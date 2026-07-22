@@ -1,0 +1,32 @@
+:root{
+/* Base palette (from brand palette-ratio sheet + logo) */
+--moomken-cyan:#3AC0EB; /* logo mark */
+--moomken-navy:#13253B; /* 60% dominant */
+--moomken-blue:#73ABDC; /* 30% secondary */
+--moomken-orange:#DF643A; /* 10% accent */
+--moomken-ice:#D0E7F1; /* light surface */
+--moomken-white:#FFFFFF;
+/* Derived tints/shades (oklch-harmonized) */
+--navy-800:#1B3350; --navy-600:#2A4A70; --navy-100:rgba(19,37,59,.08);
+--blue-300:#A3C6E8; --blue-100:#E2EEF8;
+--cyan-600:#1FA3D0; --cyan-100:#DFF4FC;
+--orange-600:#C24E2A; --orange-100:#F9E4DB;
+/* Semantic aliases */
+--surface-page:#FFFFFF;
+--surface-alt:var(--moomken-ice);
+--surface-card:#FFFFFF;
+--surface-inverse:var(--moomken-navy);
+--text-heading:var(--moomken-navy);
+--text-body:#33475C;
+--text-muted:#6B7F93;
+--text-on-dark:#FFFFFF;
+--text-on-dark-muted:var(--moomken-ice);
+--accent:var(--moomken-orange);
+--action:var(--moomken-navy);
+--action-hover:var(--navy-800);
+--link:var(--cyan-600);
+--border-subtle:#DCE6EE;
+--border-strong:#B9CBDA;
+--focus-ring:var(--moomken-cyan);
+--success:#3E8E5A; --warning:#C98A1B; --danger:#C0392B;
+}

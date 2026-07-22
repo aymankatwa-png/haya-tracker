@@ -1,0 +1,10 @@
+:root{
+--font-arabic:'Dahab Arabic ITF','Gotham',sans-serif;
+--font-latin:'Gotham','Dahab Arabic ITF',sans-serif;
+--font-body:var(--font-latin);
+--text-display:56px; --text-h1:40px; --text-h2:30px; --text-h3:22px;
+--text-lg:18px; --text-base:16px; --text-sm:14px; --text-xs:12px;
+--leading-tight:1.15; --leading-normal:1.55; --leading-arabic:1.8;
+--weight-light:300; --weight-book:400; --weight-medium:500; --weight-bold:700; --weight-black:900;
+--tracking-caps:.08em;
+}

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/moomken-design-system-14384962-a145-4338-b15c-3dab3701fd4f/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/moomken-design-system-14384962-a145-4338-b15c-3dab3701fd4f/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/moomken-design-system-14384962-a145-4338-b15c-3dab3701fd4f/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/moomken-design-system-14384962-a145-4338-b15c-3dab3701fd4f/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/moomken-design-system-14384962-a145-4338-b15c-3dab3701fd4f/tokens/base.css">
+  <link rel="stylesheet" href="_ds/moomken-design-system-14384962-a145-4338-b15c-3dab3701fd4f/styles.css">
+  <script src="_ds/moomken-design-system-14384962-a145-4338-b15c-3dab3701fd4f/_ds_bundle.js"></script>
+  <style>
+    html,body{margin:0;padding:0;background:#FFFFFF;}
+    body{font-family:'Dahab Arabic ITF','Gotham',sans-serif;color:#33475C;}
+    a{color:#1FA3D0;text-decoration:none;} a:hover{color:#13253B;text-decoration:underline;}
+    input{font-family:inherit;}
+    @keyframes bob{0%,100%{transform:translate(-50%,-100%) translateY(0);}50%{transform:translate(-50%,-100%) translateY(-9px);}}
+    @keyframes dashmove{to{stroke-dashoffset:-26;}}
+  </style>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#FFFFFF;">
+
+  <sc-if value="{{ showRolePicker }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;background:rgba(19,37,59,.75);z-index:60;display:flex;align-items:center;justify-content:center;padding:24px;">
+      <div style="background:#FFFFFF;border-radius:16px;box-shadow:0 8px 24px rgba(19,37,59,.14);padding:40px;max-width:460px;text-align:center;">
+        <img src="assets/haya-avatar.png" alt="هيا" style="width:110px;display:block;margin:0 auto 12px;">
+        <div style="font-size:28px;font-weight:800;color:#13253B;margin-bottom:6px;">من أنتِ / أنت؟</div>
+        <div style="font-size:15px;color:#6B7F93;margin-bottom:24px;">تُحفظ الإجابة على هذا الجهاز فقط</div>
+        <div style="display:flex;gap:12px;justify-content:center;">
+          <button onClick="{{ pickHaya }}" style="cursor:pointer;border:none;background:#DF643A;color:#FFFFFF;font-family:inherit;font-size:17px;font-weight:700;padding:12px 28px;border-radius:999px;" style-hover="background:#C24E2A;">أنا هَيا</button>
+          <button onClick="{{ pickMentor }}" style="cursor:pointer;border:2px solid #13253B;background:#FFFFFF;color:#13253B;font-family:inherit;font-size:17px;font-weight:700;padding:12px 28px;border-radius:999px;" style-hover="background:#D0E7F1;">أنا {{ mentorName }}</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- HERO -->
+  <header style="background:#13253B;color:#FFFFFF;padding:48px 24px 56px;">
+    <div style="max-width:1140px;margin:0 auto;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+        <img src="assets/logo-white.png" alt="Moomken" style="height:44px;">
+        <div style="font-family:'Gotham',sans-serif;font-size:12px;letter-spacing:.18em;color:#D0E7F1;text-transform:uppercase;">Media Center · Summer Training 2026</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:32px;margin-top:36px;flex-wrap:wrap;">
+        <img src="assets/haya-avatar.png" alt="هيا فرحات" style="width:150px;filter:drop-shadow(0 8px 24px rgba(0,0,0,.35));">
+        <div style="flex:1;min-width:280px;">
+          <h1 style="margin:0;font-size:44px;line-height:1.35;font-weight:900;color:#FFFFFF;">رحلة هَيا في مركز الإعلام</h1>
+          <p style="margin:10px 0 0;font-size:18px;line-height:1.8;color:#D0E7F1;max-width:640px;">خمسة أسابيع، خريطة واحدة، ومهمّة واضحة: من موهوبة إلى مصمّمة محترفة. كل مهمة تنجزينها تحرّك وجهك على الخريطة خطوة نحو "ممكن".</p>
+          <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
+            <span style="background:#2A4A70;color:#D0E7F1;font-size:13px;padding:5px 14px;border-radius:999px;">Design Kickstart</span>
+            <span style="background:#2A4A70;color:#D0E7F1;font-size:13px;padding:5px 14px;border-radius:999px;">Photoshop + Illustrator Unleashed</span>
+            <span style="background:#2A4A70;color:#D0E7F1;font-size:13px;padding:5px 14px;border-radius:999px;">After Effects Kickstart</span>
+            <span style="background:#DF643A;color:#FFFFFF;font-size:13px;padding:5px 14px;border-radius:999px;">School of Motion</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:28px;text-align:center;">
+          <div>
+            <div style="font-family:'Gotham',sans-serif;font-size:40px;font-weight:800;color:#3AC0EB;">{{ overallPct }}%</div>
+            <div style="font-size:13px;color:#D0E7F1;">من الرحلة</div>
+          </div>
+          <div>
+            <div style="font-family:'Gotham',sans-serif;font-size:40px;font-weight:800;color:#FFFFFF;">{{ doneCount }}<span style="font-size:20px;color:#73ABDC;">/{{ totalCount }}</span></div>
+            <div style="font-size:13px;color:#D0E7F1;">مهمة معتمدة</div>
+          </div>
+          <div>
+            <div style="font-family:'Gotham',sans-serif;font-size:40px;font-weight:800;color:#DF643A;">{{ pendingCount }}</div>
+            <div style="font-size:13px;color:#D0E7F1;">بانتظار الاعتماد</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SYNC BAR -->
+  <div style="position:sticky;top:0;z-index:40;background:#FFFFFF;border-bottom:1px solid #DCE6EE;box-shadow:0 2px 8px rgba(19,37,59,.08);">
+    <div style="max-width:1140px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="width:10px;height:10px;border-radius:50%;background:{{ syncDot }};display:inline-block;"></span>
+        <span style="font-size:14px;color:#6B7F93;">{{ syncText }}</span>
+      </div>
+      <div style="flex:1;"></div>
+      <span style="font-size:14px;color:#13253B;font-weight:700;">الوضع: {{ roleLabel }}</span>
+      <button onClick="{{ switchRole }}" style="cursor:pointer;background:none;border:none;color:#1FA3D0;font-family:inherit;font-size:13px;text-decoration:underline;">تبديل</button>
+      <button onClick="{{ manualSync }}" style="cursor:pointer;border:1px solid #13253B;background:#13253B;color:#FFFFFF;font-family:inherit;font-size:13px;font-weight:700;padding:7px 18px;border-radius:999px;" style-hover="background:#1B3350;">مزامنة الآن</button>
+      <button onClick="{{ toggleSetup }}" style="cursor:pointer;border:1px solid #DCE6EE;background:#FFFFFF;color:#33475C;font-family:inherit;font-size:13px;padding:7px 18px;border-radius:999px;" style-hover="background:#D0E7F1;">إعدادات الحفظ</button>
+    </div>
+    <sc-if value="{{ showSetup }}" hint-placeholder-val="{{ false }}">
+      <div style="border-top:1px solid #DCE6EE;background:#E2EEF8;">
+        <div style="max-width:1140px;margin:0 auto;padding:16px 24px;display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;" dir="ltr">
+          <div style="flex:1;min-width:220px;">
+            <label style="display:block;font-family:'Gotham',sans-serif;font-size:12px;font-weight:700;color:#13253B;margin-bottom:4px;">GitHub Gist ID</label>
+            <input value="{{ gistId }}" onChange="{{ onGistChange }}" placeholder="e.g. a1b2c3d4…" style="width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid #B9CBDA;border-radius:10px;font-size:14px;background:#FFFFFF;">
+          </div>
+          <div style="flex:1;min-width:220px;">
+            <label style="display:block;font-family:'Gotham',sans-serif;font-size:12px;font-weight:700;color:#13253B;margin-bottom:4px;">GitHub Token (gist scope)</label>
+            <input type="password" value="{{ token }}" onChange="{{ onTokenChange }}" placeholder="ghp_…" style="width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid #B9CBDA;border-radius:10px;font-size:14px;background:#FFFFFF;">
+          </div>
+          <button onClick="{{ saveSetup }}" style="cursor:pointer;border:none;background:#DF643A;color:#FFFFFF;font-family:'Gotham',sans-serif;font-size:13px;font-weight:700;padding:10px 22px;border-radius:999px;" style-hover="background:#C24E2A;">Save &amp; connect</button>
+          <div dir="rtl" style="width:100%;font-size:13px;color:#33475C;line-height:1.8;">يُحفظ التقدّم في GitHub Gist مشترك حتى تشاهدانه من جهازين. التعليمات الكاملة في ملف <span style="font-family:'Gotham',sans-serif;">DEPLOY.md</span> داخل المشروع.</div>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <!-- MAP -->
+  <section style="max-width:1140px;margin:0 auto;padding:56px 24px 40px;">
+    <h2 style="margin:0 0 4px;font-size:30px;font-weight:800;color:#13253B;">خريطة الرحلة</h2>
+    <p style="margin:0 0 28px;font-size:15px;color:#6B7F93;">Quest Map — from Day 1 to the final showcase</p>
+    <div dir="ltr" style="position:relative;width:100%;height:400px;background:#D0E7F1;border-radius:16px;overflow:visible;">
+      <svg viewBox="0 0 1000 400" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;">
+        <path d="M40,258 C90,150 130,110 180,110 S300,282 360,282 S480,98 540,98 S650,274 710,274 S800,114 860,114 S935,210 950,258" fill="none" stroke="#73ABDC" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 24" style="animation:dashmove 2.2s linear infinite;"></path>
+      </svg>
+      <sc-for list="{{ stations }}" as="s" hint-placeholder-count="7">
+        <div style="position:absolute;left:{{ s.x }};top:{{ s.y }};transform:translate(-50%,-50%);text-align:center;width:132px;">
+          <sc-if value="{{ s.isCurrent }}" hint-placeholder-val="{{ false }}">
+            <img src="assets/haya-avatar.png" alt="هيا هنا" style="position:absolute;left:50%;top:-6px;width:92px;transform:translate(-50%,-100%);animation:bob 2.6s ease-in-out infinite;filter:drop-shadow(0 6px 14px rgba(19,37,59,.3));z-index:5;">
+          </sc-if>
+          <div style="width:60px;height:60px;border-radius:50%;margin:0 auto;background:{{ s.bg }};border:4px solid {{ s.ring }};display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(19,37,59,.15);">
+            <sc-if value="{{ s.isFinish }}" hint-placeholder-val="{{ false }}">
+              <img src="assets/logo-cyan.png" alt="ممكن" style="width:36px;">
+            </sc-if>
+            <sc-if value="{{ s.notFinish }}" hint-placeholder-val="{{ true }}">
+              <span style="font-family:'Gotham',sans-serif;font-size:22px;font-weight:800;color:{{ s.fg }};">{{ s.glyph }}</span>
+            </sc-if>
+          </div>
+          <div dir="rtl" style="margin-top:8px;font-size:14px;font-weight:800;color:#13253B;line-height:1.5;">{{ s.labelAr }}</div>
+          <div style="font-family:'Gotham',sans-serif;font-size:10.5px;letter-spacing:.06em;color:#6B7F93;text-transform:uppercase;">{{ s.labelEn }}</div>
+          <sc-if value="{{ s.pctText }}" hint-placeholder-val="{{ false }}">
+            <div style="display:inline-block;margin-top:4px;background:#FFFFFF;border-radius:999px;padding:1px 10px;font-family:'Gotham',sans-serif;font-size:11px;font-weight:700;color:#DF643A;">{{ s.pctText }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- MENTOR BANNER -->
+  <sc-if value="{{ showMentorBanner }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width:1140px;margin:0 auto 8px;padding:0 24px;">
+      <div style="background:#F9E4DB;border-radius:10px;padding:12px 20px;font-size:15px;color:#C24E2A;font-weight:700;">لديك {{ pendingCount }} مهمة بانتظار اعتمادك — ابحث عن الشارات البرتقالية بالأسفل.</div>
+    </div>
+  </sc-if>
+
+  <!-- PHASES -->
+  <section style="background:#D0E7F1;padding:48px 24px 64px;margin-top:24px;">
+    <div style="max-width:1140px;margin:0 auto;display:grid;gap:24px;">
+      <sc-for list="{{ phases }}" as="ph" hint-placeholder-count="5">
+        <div style="background:#FFFFFF;border-radius:16px;box-shadow:0 2px 8px rgba(19,37,59,.08);padding:28px;">
+          <div style="display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;">
+            <div style="width:52px;height:52px;border-radius:50%;background:{{ ph.numBg }};color:{{ ph.numFg }};display:flex;align-items:center;justify-content:center;font-family:'Gotham',sans-serif;font-size:20px;font-weight:800;flex-shrink:0;">{{ ph.week }}</div>
+            <div style="flex:1;min-width:240px;">
+              <div style="font-size:22px;font-weight:800;color:#13253B;">{{ ph.titleAr }}</div>
+              <div style="font-family:'Gotham',sans-serif;font-size:13px;letter-spacing:.04em;color:#6B7F93;margin-top:2px;">{{ ph.titleEn }}</div>
+            </div>
+            <div style="min-width:170px;">
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:#6B7F93;margin-bottom:4px;"><span>التقدّم</span><span style="font-family:'Gotham',sans-serif;font-weight:700;color:#13253B;">{{ ph.pct }}%</span></div>
+              <div style="height:8px;border-radius:999px;background:#E2EEF8;overflow:hidden;"><div style="height:100%;border-radius:999px;background:{{ ph.barColor }};width:{{ ph.pctW }};"></div></div>
+            </div>
+          </div>
+          <p style="margin:14px 0 18px;font-size:15px;line-height:1.9;color:#33475C;">{{ ph.desc }}</p>
+          <div style="display:grid;gap:8px;">
+            <sc-for list="{{ ph.tasks }}" as="t" hint-placeholder-count="6">
+              <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;background:{{ t.rowBg }};border:1px solid {{ t.rowBorder }};flex-wrap:wrap;">
+                <span style="font-family:'Gotham',sans-serif;font-size:11px;font-weight:700;color:#6B7F93;background:#FFFFFF;border:1px solid #DCE6EE;border-radius:6px;padding:3px 8px;flex-shrink:0;">{{ t.day }}</span>
+                <span style="flex:1;min-width:220px;font-size:15.5px;line-height:1.7;color:{{ t.textColor }};">{{ t.text }}</span>
+                <sc-if value="{{ t.tag }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size:12px;font-weight:700;color:{{ t.tagFg }};background:{{ t.tagBg }};border-radius:999px;padding:3px 12px;flex-shrink:0;">{{ t.tag }}</span>
+                </sc-if>
+                <span style="font-size:12.5px;font-weight:700;color:{{ t.chipFg }};background:{{ t.chipBg }};border-radius:999px;padding:4px 13px;flex-shrink:0;">{{ t.chipLabel }}</span>
+                <sc-if value="{{ t.showPrimary }}" hint-placeholder-val="{{ false }}">
+                  <button onClick="{{ t.onPrimary }}" style="cursor:pointer;border:none;background:{{ t.primaryBg }};color:#FFFFFF;font-family:inherit;font-size:13px;font-weight:700;padding:6px 16px;border-radius:999px;flex-shrink:0;">{{ t.primaryLabel }}</button>
+                </sc-if>
+                <sc-if value="{{ t.showSecondary }}" hint-placeholder-val="{{ false }}">
+                  <button onClick="{{ t.onSecondary }}" style="cursor:pointer;border:1px solid #B9CBDA;background:#FFFFFF;color:#6B7F93;font-family:inherit;font-size:13px;padding:5px 14px;border-radius:999px;flex-shrink:0;" style-hover="background:#D0E7F1;">{{ t.secondaryLabel }}</button>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#13253B;color:#D0E7F1;padding:36px 24px;">
+    <div style="max-width:1140px;margin:0 auto;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+      <img src="assets/logo-white.png" alt="Moomken" style="height:32px;">
+      <div style="font-size:14px;line-height:1.9;flex:1;min-width:260px;">مركز الإعلام — منظمة ممكن للتوعية والإعلام · طرابلس، ليبيا<br><span style="font-family:'Gotham',sans-serif;font-size:12px;letter-spacing:.08em;">EVERYTHING IS MOOMKEN — كل شيء ممكن</span></div>
+      <div style="font-family:'Gotham',sans-serif;font-size:12px;color:#73ABDC;">Design Kickstart · PS/AI Unleashed · AE Kickstart — School of Motion</div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mentorName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;المشرف&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;General&quot;},&quot;autoSyncSeconds&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:60,&quot;min&quot;:0,&quot;max&quot;:600,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Sync&quot;}}">
+class Component extends DCLogic {
+  state = { statuses: {}, updatedAt: 0, role: null, gistId: '', token: '', showSetup: false, syncState: 'local', lastSync: null, showRolePicker: false };
+
+  getPlan() {
+    return [
+      { week: 1, titleAr: 'الانطلاق — أساسيات التصميم', titleEn: 'Design Kickstart — Part I · School of Motion',
+        desc: 'أسبوع التعارف والأساسيات: تبدأ الرحلة بجولة في مركز الإعلام، ثم الغوص في أول نصف من كورس Design Kickstart — عملية التصميم، التكوين، والقيمة الضوئية.',
+        tasks: [
+          { id: 'w1t1', day: 'يوم 1', text: 'جولة تعارف في مركز الإعلام + تفعيل حسابك على Moomken' },
+          { id: 'w1t2', day: 'يوم 1', text: 'قابلي عضوًا من الفريق واسأليه: ما أول تصميم أنجزته في ممكن؟', kind: 'mission' },
+          { id: 'w1t3', day: 'يوم 2', text: 'Design Kickstart: Intro + The Design Process' },
+          { id: 'w1t4', day: 'يوم 3', text: 'Design Kickstart: Composition & Layout' },
+          { id: 'w1t5', day: 'يوم 4', text: 'Design Kickstart: Value & Contrast + تمرين تطبيقي قصير' },
+          { id: 'w1t6', day: 'يوم 5', text: 'جلسة مشروع: Sawab — كيف تحارب ممكن التضليل الإعلامي', kind: 'session' },
+          { id: 'w1t7', day: 'يوم 5', text: 'تمرين الأسبوع: إعادة تصميم بوستر قديم لممكن بمبادئ هذا الأسبوع' } ] },
+      { week: 2, titleAr: 'التعمّق — لون وخط وتسلسل', titleEn: 'Design Kickstart — Part II',
+        desc: 'النصف الثاني من Design Kickstart: نظرية الألوان، التايبوغرافي بين العربية واللاتينية، والتسلسل البصري — مع أول جلسة نقد ودّية لتصاميمك.',
+        tasks: [
+          { id: 'w2t1', day: 'يوم 6', text: 'Design Kickstart: Color Theory — وتطبيقها على ألوان ممكن (60/30/10)' },
+          { id: 'w2t2', day: 'يوم 7', text: 'Design Kickstart: Typography — خطوط Dahab العربية × Gotham اللاتينية' },
+          { id: 'w2t3', day: 'يوم 8', text: 'Design Kickstart: Hierarchy & Visual Flow + تحليل 3 تصاميم من أرشيف ممكن' },
+          { id: 'w2t4', day: 'يوم 9', text: 'جولة في أرشيف مشاريع ممكن — اختاري تصميمك المفضّل واشرحي لماذا', kind: 'mission' },
+          { id: 'w2t5', day: 'يوم 9', text: 'جلسة نقد ودّية: اعرضي تمرين الأسبوع الماضي واستقبلي الملاحظات' },
+          { id: 'w2t6', day: 'يوم 10', text: 'جلسة مشروع: Tawasul — التواصل المجتمعي', kind: 'session' },
+          { id: 'w2t7', day: 'يوم 10', text: 'تمرين الأسبوع: تصميم منشور سوشيال ميديا كامل من الصفر' } ] },
+      { week: 3, titleAr: 'الأدوات — فوتوشوب وإليستريتور والوحدات', titleEn: 'Photoshop & Illustrator Unleashed + Unit Days',
+        desc: 'أسبوع الأدوات والجولات: أساسيات Photoshop وIllustrator Unleashed، مع يوم كامل عند وحدة التصوير ويوم عند وحدة الحملات والكتابة الإبداعية.',
+        tasks: [
+          { id: 'w3t1', day: 'يوم 11', text: 'Photoshop Unleashed: Selections, Masks & Layers' },
+          { id: 'w3t2', day: 'يوم 12', text: 'Photoshop Unleashed: معالجة الصور وتجهيزها للتصميم' },
+          { id: 'w3t3', day: 'يوم 13', text: 'يوم مع وحدة التصوير: أساسيات الكاميرا والإضاءة والكادر', kind: 'unit' },
+          { id: 'w3t4', day: 'يوم 14', text: 'يوم مع وحدة الحملات والكتابة الإبداعية: الفكرة والرسالة قبل التصميم', kind: 'unit' },
+          { id: 'w3t5', day: 'يوم 15', text: 'Illustrator Unleashed: Pen Tool, Shapes & إعادة رسم شعار' },
+          { id: 'w3t6', day: 'يوم 15', text: 'جلسة مشروع: We Are Libyans', kind: 'session' } ] },
+      { week: 4, titleAr: 'الحركة — أول خطوات الموشن', titleEn: 'After Effects Kickstart — a taste of motion',
+        desc: 'تذوّق الموشن ديزاين: واجهة After Effects، الـ Keyframes، وسرّ الحركة الجميلة في الـ Easing — وتنتهين بتحريك شعار ممكن بنفسك.',
+        tasks: [
+          { id: 'w4t1', day: 'يوم 16', text: 'AE Kickstart: الواجهة والـ Timeline وأول Keyframes' },
+          { id: 'w4t2', day: 'يوم 17', text: 'AE Kickstart: Easing & Graph Editor — سرّ الحركة الجميلة' },
+          { id: 'w4t3', day: 'يوم 18', text: 'AE Kickstart: تحريك شعار بسيط (Logo Reveal)' },
+          { id: 'w4t4', day: 'يوم 19', text: 'AE Kickstart: التصدير والصيغ — ومتى نستخدم الموشن في حملاتنا' },
+          { id: 'w4t5', day: 'يوم 20', text: 'جلسة مشروع: Tarseem', kind: 'session' },
+          { id: 'w4t6', day: 'يوم 20', text: 'تمرين الأسبوع: تحريك بسيط لشعار ممكن' } ] },
+      { week: 5, titleAr: 'الممكن — المشروع الختامي', titleEn: 'Capstone — a real design, really published',
+        desc: 'أسبوع البطولة: Brief حقيقي من أحد مشاريع ممكن، تصميم ومراجعة ونشر فعلي على قنوات المنظمة، ثم عرض ختامي أمام الفريق وشهادة إتمام.',
+        tasks: [
+          { id: 'w5t1', day: 'يوم 21', text: 'استلام Brief حقيقي من أحد مشاريع ممكن + بناء Moodboard' },
+          { id: 'w5t2', day: 'يوم 22', text: 'تصميم المسودات الأولى' },
+          { id: 'w5t3', day: 'يوم 23', text: 'جلسة ملاحظات مع المشرف + التعديلات النهائية' },
+          { id: 'w5t4', day: 'يوم 24', text: 'النشر الفعلي للتصميم على قنوات ممكن', kind: 'capstone' },
+          { id: 'w5t5', day: 'يوم 25', text: 'العرض الختامي أمام الفريق + شهادة إتمام التدريب', kind: 'capstone' } ] } ];
+  }
+
+  componentDidMount() {
+    let cfg = {}, cache = {};
+    try { cfg = JSON.parse(localStorage.getItem('hayaTracker.cfg') || '{}'); } catch (e) {}
+    try { cache = JSON.parse(localStorage.getItem('hayaTracker.state') || '{}'); } catch (e) {}
+    this.setState({
+      role: cfg.role || null, gistId: cfg.gistId || '', token: cfg.token || '',
+      statuses: cache.statuses || {}, updatedAt: cache.updatedAt || 0,
+      showRolePicker: !cfg.role,
+      syncState: cfg.gistId ? 'idle' : 'local'
+    }, () => { if (this.state.gistId) this.pull(); });
+    const secs = Number(this.props.autoSyncSeconds ?? 60);
+    if (secs > 0) this._timer = setInterval(() => { if (this.state.gistId && !this._pushPending) this.pull(); }, secs * 1000);
+  }
+  componentWillUnmount() { if (this._timer) clearInterval(this._timer); if (this._pushTimer) clearTimeout(this._pushTimer); }
+
+  saveCfg() {
+    localStorage.setItem('hayaTracker.cfg', JSON.stringify({ role: this.state.role, gistId: this.state.gistId.trim(), token: this.state.token.trim() }));
+  }
+  saveLocal(statuses, updatedAt) {
+    localStorage.setItem('hayaTracker.state', JSON.stringify({ statuses, updatedAt }));
+  }
+
+  async pull(manual) {
+    const { gistId, token } = this.state;
+    if (!gistId) { if (manual) this.setState({ syncState: 'local' }); return; }
+    this.setState({ syncState: 'syncing' });
+    try {
+      const headers = { Accept: 'application/vnd.github+json' };
+      if (token) headers.Authorization = 'Bearer ' + token.trim();
+      const r = await fetch('https://api.github.com/gists/' + gistId.trim(), { headers });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const g = await r.json();
+      const f = g.files && g.files['haya-progress.json'];
+      const remote = f ? JSON.parse(f.content) : { statuses: {}, updatedAt: 0 };
+      if ((remote.updatedAt || 0) >= this.state.updatedAt) {
+        this.saveLocal(remote.statuses || {}, remote.updatedAt || 0);
+        this.setState({ statuses: remote.statuses || {}, updatedAt: remote.updatedAt || 0, syncState: 'ok', lastSync: new Date() });
+      } else {
+        this.setState({ syncState: 'ok', lastSync: new Date() });
+        this.schedulePush();
+      }
+    } catch (e) { this.setState({ syncState: 'error' }); }
+  }
+
+  schedulePush() {
+    this._pushPending = true;
+    if (this._pushTimer) clearTimeout(this._pushTimer);
+    this._pushTimer = setTimeout(() => this.push(), 1500);
+  }
+  async push() {
+    this._pushPending = false;
+    const { gistId, token, statuses, updatedAt } = this.state;
+    if (!gistId || !token) return;
+    this.setState({ syncState: 'syncing' });
+    try {
+      const r = await fetch('https://api.github.com/gists/' + gistId.trim(), {
+        method: 'PATCH',
+        headers: { Accept: 'application/vnd.github+json', Authorization: 'Bearer ' + token.trim(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ files: { 'haya-progress.json': { content: JSON.stringify({ statuses, updatedAt }, null, 2) } } })
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      this.setState({ syncState: 'ok', lastSync: new Date() });
+    } catch (e) { this.setState({ syncState: 'error' }); }
+  }
+
+  setStatus(id, st) {
+    const statuses = Object.assign({}, this.state.statuses);
+    if (st === 'todo') delete statuses[id]; else statuses[id] = st;
+    const updatedAt = Date.now();
+    this.saveLocal(statuses, updatedAt);
+    this.setState({ statuses, updatedAt }, () => this.schedulePush());
+  }
+
+  renderVals() {
+    const s = this.state;
+    const mentorName = this.props.mentorName ?? 'المشرف';
+    const plan = this.getPlan();
+    const role = s.role;
+    let done = 0, pending = 0, total = 0;
+    const kindTags = {
+      mission: { tag: 'مهمة جانبية', tagBg: '#DFF4FC', tagFg: '#1FA3D0' },
+      session: { tag: 'جلسة مشروع', tagBg: '#E2EEF8', tagFg: '#2A4A70' },
+      unit: { tag: 'يوم مع وحدة', tagBg: '#F9E4DB', tagFg: '#C24E2A' },
+      capstone: { tag: 'المشروع الختامي', tagBg: '#13253B', tagFg: '#FFFFFF' } };
+    const phases = plan.map((ph) => {
+      let phDone = 0;
+      const tasks = ph.tasks.map((t) => {
+        const st = s.statuses[t.id] || 'todo';
+        total++;
+        if (st === 'done') { done++; phDone++; }
+        if (st === 'pending') pending++;
+        const kt = kindTags[t.kind] || {};
+        const vm = {
+          id: t.id, day: t.day, text: t.text,
+          tag: kt.tag || false, tagBg: kt.tagBg || '', tagFg: kt.tagFg || '',
+          rowBg: st === 'done' ? '#E2EEF8' : st === 'pending' ? '#F9E4DB' : '#FFFFFF',
+          rowBorder: st === 'done' ? '#E2EEF8' : st === 'pending' ? '#F9E4DB' : '#DCE6EE',
+          textColor: st === 'done' ? '#6B7F93' : '#13253B',
+          chipLabel: st === 'done' ? 'معتمدة ✓' : st === 'pending' ? 'بانتظار الاعتماد' : 'لم تبدأ',
+          chipBg: st === 'done' ? '#13253B' : st === 'pending' ? '#DF643A' : '#FFFFFF',
+          chipFg: st === 'done' ? '#FFFFFF' : st === 'pending' ? '#FFFFFF' : '#6B7F93',
+          showPrimary: false, showSecondary: false, primaryLabel: '', secondaryLabel: '', primaryBg: '#13253B',
+          onPrimary: () => {}, onSecondary: () => {} };
+        if (role === 'haya') {
+          if (st === 'todo') { vm.showPrimary = true; vm.primaryLabel = 'أنجزتها!'; vm.primaryBg = '#DF643A'; vm.onPrimary = () => this.setStatus(t.id, 'pending'); }
+          if (st === 'pending') { vm.showSecondary = true; vm.secondaryLabel = 'تراجع'; vm.onSecondary = () => this.setStatus(t.id, 'todo'); }
+        } else if (role === 'mentor') {
+          if (st === 'pending') {
+            vm.showPrimary = true; vm.primaryLabel = 'اعتماد ✓'; vm.primaryBg = '#13253B'; vm.onPrimary = () => this.setStatus(t.id, 'done');
+            vm.showSecondary = true; vm.secondaryLabel = 'إرجاع'; vm.onSecondary = () => this.setStatus(t.id, 'todo');
+          }
+          if (st === 'todo') { vm.showSecondary = true; vm.secondaryLabel = 'اعتماد مباشر'; vm.onSecondary = () => this.setStatus(t.id, 'done'); }
+          if (st === 'done') { vm.showSecondary = true; vm.secondaryLabel = 'إلغاء الاعتماد'; vm.onSecondary = () => this.setStatus(t.id, 'pending'); }
+        }
+        return vm;
+      });
+      const pct = ph.tasks.length ? Math.round((phDone / ph.tasks.length) * 100) : 0;
+      return { week: ph.week, titleAr: ph.titleAr, titleEn: ph.titleEn, desc: ph.desc, tasks, pct, pctW: pct + '%',
+        barColor: pct === 100 ? '#13253B' : '#DF643A',
+        numBg: pct === 100 ? '#13253B' : '#D0E7F1', numFg: pct === 100 ? '#FFFFFF' : '#13253B' };
+    });
+    let currentIdx = phases.findIndex((p) => p.pct < 100);
+    const allDone = currentIdx === -1;
+    if (allDone) currentIdx = phases.length;
+    const coords = [ ['4%', '64.5%'], ['18%', '27.5%'], ['36%', '70.5%'], ['54%', '24.5%'], ['71%', '68.5%'], ['86%', '28.5%'], ['95%', '64.5%'] ];
+    const stations = coords.map((c, i) => {
+      const isStart = i === 0, isFinish = i === 6;
+      const phIdx = i - 1;
+      const ph = phases[phIdx];
+      const stDone = isStart ? true : isFinish ? allDone : ph.pct === 100;
+      const isCurrent = isFinish ? allDone : !isStart && phIdx === currentIdx;
+      return {
+        x: c[0], y: c[1], isFinish, notFinish: !isFinish,
+        isCurrent,
+        glyph: isStart ? '›' : String(i),
+        bg: stDone ? '#13253B' : isCurrent ? '#FFFFFF' : '#E2EEF8',
+        ring: isCurrent ? '#DF643A' : stDone ? '#13253B' : '#A3C6E8',
+        fg: stDone ? '#FFFFFF' : isCurrent ? '#DF643A' : '#6B7F93',
+        labelAr: isStart ? 'البداية' : isFinish ? 'ممكن!' : ph.titleAr.split(' — ')[0],
+        labelEn: isStart ? 'Start' : isFinish ? 'Certificate' : 'Week ' + i,
+        pctText: (!isStart && !isFinish && ph.pct > 0 && ph.pct < 100) ? ph.pct + '%' : false };
+    });
+    const syncMap = {
+      local: { dot: '#B9CBDA', text: 'حفظ محلي فقط — اضغط "إعدادات الحفظ" لربط المزامنة' },
+      idle: { dot: '#C98A1B', text: 'جاهز للمزامنة' },
+      syncing: { dot: '#C98A1B', text: 'جارٍ المزامنة…' },
+      ok: { dot: '#3E8E5A', text: 'متزامن' + (s.lastSync ? ' · آخر مزامنة ' + s.lastSync.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) : '') },
+      error: { dot: '#C0392B', text: 'تعذّرت المزامنة — تحققي من الـ Gist ID والـ Token' } };
+    const sy = syncMap[s.syncState] || syncMap.local;
+    return {
+      mentorName,
+      showRolePicker: s.showRolePicker,
+      pickHaya: () => { this.setState({ role: 'haya', showRolePicker: false }, () => this.saveCfg()); },
+      pickMentor: () => { this.setState({ role: 'mentor', showRolePicker: false }, () => this.saveCfg()); },
+      switchRole: () => this.setState({ showRolePicker: true }),
+      roleLabel: role === 'haya' ? 'هَيا' : role === 'mentor' ? mentorName : '—',
+      overallPct: total ? Math.round((done / total) * 100) : 0,
+      doneCount: done, totalCount: total, pendingCount: pending,
+      showMentorBanner: role === 'mentor' && pending > 0,
+      syncDot: sy.dot, syncText: sy.text,
+      manualSync: () => this.pull(true),
+      showSetup: s.showSetup,
+      toggleSetup: () => this.setState({ showSetup: !s.showSetup }),
+      gistId: s.gistId, token: s.token,
+      onGistChange: (e) => this.setState({ gistId: e.target.value }),
+      onTokenChange: (e) => this.setState({ token: e.target.value }),
+      saveSetup: () => { this.saveCfg(); this.setState({ showSetup: false, syncState: 'idle' }, () => this.pull(true)); },
+      stations, phases };
+  }
+}
+</script>
+</body>
+</html>
